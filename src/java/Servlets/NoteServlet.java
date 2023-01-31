@@ -22,21 +22,20 @@ public class NoteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp")
-                .forward(request, response);
-        String path = getServletContext().getRealPath("/WEB-INF/note.txt");
         
+        String path = getServletContext().getRealPath("/WEB-INF/note.txt");
+ 
         BufferedReader br = new BufferedReader(new FileReader(new File(path)));
         String title = br.readLine();
-        String contents = br.readLine();
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new FileWriter(path, false)));
+        String content = br.readLine();
         
-        Note note = new Note();
-        String noteTitle = title;
-        String noteContent = contents; 
+        Note note = new Note(title,content);
+        request.setAttribute("note", note);
         
+        br.close();
         
-
+        getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp")
+                .forward(request, response);
        
     }
 
@@ -45,6 +44,10 @@ public class NoteServlet extends HttpServlet {
             throws ServletException, IOException {
         getServletContext().getRequestDispatcher("/WEB-INF/viewnote.jsp")
                 .forward(request, response);
+        
+        
+        
+      
       
     }
 

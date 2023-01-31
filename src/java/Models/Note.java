@@ -1,11 +1,13 @@
 
 package Models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alexc
  */
-public class Note {
+public class Note implements Serializable {
     private String title;
     private String content;
 
