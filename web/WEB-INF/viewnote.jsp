@@ -17,6 +17,7 @@
         <form method="post" action="NoteServlet">
             Title: ${note.title}<br>
             Contents: ${note.content}<br>
+            <a href="NoteServlet?edit">Edit</a>
         </form>
     </body>
 </html>
